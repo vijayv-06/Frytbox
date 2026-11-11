@@ -1,0 +1,23 @@
+[
+  {
+    "referenceId": "FBX-QT-2026-58751",
+    "fullName": "Vikram Sundaram",
+    "companyName": "Sundaram Technologies",
+    "businessEmail": "vikram@sundaramtech.com",
+    "phone": "+919845012345",
+    "country": "India",
+    "serviceRequired": "air-freight",
+    "originCountry": "India",
+    "originCity": "Bengaluru",
+    "destinationCountry": "Germany",
+    "destinationCity": "Frankfurt",
+    "cargoDescription": "Precision medical device assemblies",
+    "cargoWeight": "Not specified",
+    "cargoDimensions": "Not specified",
+    "shipmentType": "Standard Freight",
+    "preferredShippingDate": "Flexible",
+    "additionalRequirements": "",
+    "status": "Received",
+    "createdAt": "2026-11-10T15:07:29.349Z"
+  }
+]
