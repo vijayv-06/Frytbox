@@ -46,19 +46,19 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ compact = fals
   };
 
   return (
-    <section className="py-20 bg-white text-[#0F172A]">
+    <section className="py-12 sm:py-20 bg-white text-[#0F172A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#2563EB] mb-2">
-              <span className="h-2 w-2 rounded-full bg-[#2563EB]" />
+            <div className="inline-flex items-center space-x-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#2563EB] mb-1.5 sm:mb-2">
+              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#2563EB]" />
               <span>Comprehensive Logistics Solutions</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#081426] tracking-tight font-display">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-[#081426] tracking-tight font-display">
               End-to-End Freight Forwarding
             </h2>
-            <p className="mt-3 text-base text-gray-600 max-w-xl leading-relaxed">
+            <p className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-600 max-w-xl leading-relaxed">
               Streamlining international shipping through integrated air, ocean, road, project cargo, and customs clearance.
             </p>
           </div>
@@ -67,7 +67,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ compact = fals
           {compact ? (
             <Link
               to="/services"
-              className="mt-4 md:mt-0 inline-flex items-center space-x-2 text-xs font-bold text-[#2563EB] hover:text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-xl transition-all"
+              className="mt-3 md:mt-0 inline-flex items-center space-x-1.5 text-xs font-bold text-[#2563EB] hover:text-[#1D4ED8] bg-blue-50 hover:bg-blue-100 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl transition-all w-fit"
             >
               <span>View All 6 Services</span>
               <ArrowRight className="h-3.5 w-3.5" />
@@ -135,12 +135,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ compact = fals
               </div>
 
               {/* Card Body */}
-              <div className="p-5 flex-1 flex flex-col justify-between">
+              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-base font-bold text-[#081426] group-hover:text-[#2563EB] transition-colors font-display">
+                  <h3 className="text-sm sm:text-base font-bold text-[#081426] group-hover:text-[#2563EB] transition-colors font-display">
                     {service.title}
                   </h3>
-                  <p className="mt-1.5 text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                  <p className="mt-1 sm:mt-1.5 text-[11px] sm:text-xs text-gray-600 line-clamp-2 leading-relaxed">
                     {service.shortDesc}
                   </p>
 

@@ -114,62 +114,62 @@ export const HeroVideo: React.FC = () => {
       </div>
 
       {/* Hero Content Container: Low Content, High Impact */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 sm:py-28 flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-14 sm:py-24 lg:py-28 flex flex-col justify-center">
         <div className="max-w-3xl">
           {/* Subtle Tagline */}
-          <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-3 sm:px-3.5 py-1.5 rounded-full mb-5 sm:mb-6 border border-white/20 text-[10px] sm:text-xs font-semibold tracking-wider text-white uppercase max-w-full">
+          <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-5 border border-white/20 text-[9px] sm:text-xs font-semibold tracking-wider text-white uppercase max-w-full">
             <span className="h-2 w-2 rounded-full bg-[#2563EB] animate-pulse shrink-0" />
             <span className="truncate">GLOBAL FREIGHT FORWARDING & SUPPLY CHAIN</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] sm:leading-[1.1] font-display">
+          {/* Headline - smaller on mobile for high-end responsive balance */}
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.15] sm:leading-[1.1] font-display">
             Connecting Businesses. <br />
             <span className="text-white">Moving the </span>
             <span className="text-[#38BDF8]">World.</span>
           </h1>
 
-          {/* Concise Subtitle */}
-          <p className="mt-4 sm:mt-5 text-sm sm:text-lg text-gray-200 font-normal leading-relaxed max-w-2xl">
+          {/* Concise Subtitle - small & sharp on mobile */}
+          <p className="mt-2.5 sm:mt-5 text-xs sm:text-base md:text-lg text-gray-200 font-normal leading-relaxed max-w-2xl">
             Reliable multi-modal air, ocean, and inland freight solutions designed to streamline your global trade from factory floor to customer door.
           </p>
 
           {/* Single Focused Professional Blue CTA */}
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+          <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center space-y-2.5 sm:space-y-0 sm:space-x-4">
             <Link
               to="/quote"
-              className="px-7 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center space-x-2.5 text-center"
+              className="px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#2563EB] hover:bg-[#1D4ED8] transition-all shadow-lg hover:shadow-blue-500/25 flex items-center justify-center space-x-2 text-center"
             >
               <span>Request a Quote</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </Link>
 
             <Link
               to="/services"
-              className="px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 transition-all flex items-center justify-center text-center"
+              className="px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 transition-all flex items-center justify-center text-center"
             >
               Explore Services
             </Link>
           </div>
         </div>
 
-        {/* Minimal Stats Strip */}
-        <div className="mt-12 sm:mt-16 pt-6 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl">
-          <div className="p-1 sm:p-0">
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-display">120+</div>
-            <div className="text-[11px] sm:text-xs text-gray-300 mt-0.5">Global Ports & Hubs</div>
+        {/* Minimal Stats Strip - compact on mobile */}
+        <div className="mt-8 sm:mt-16 pt-5 sm:pt-6 border-t border-white/20 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-3xl">
+          <div className="p-0.5 sm:p-0">
+            <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white font-display">120+</div>
+            <div className="text-[10px] sm:text-xs text-gray-300 mt-0.5">Global Ports & Hubs</div>
           </div>
-          <div className="p-1 sm:p-0">
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-display">99.4%</div>
-            <div className="text-[11px] sm:text-xs text-gray-300 mt-0.5">On-Time Performance</div>
+          <div className="p-0.5 sm:p-0">
+            <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white font-display">99.4%</div>
+            <div className="text-[10px] sm:text-xs text-gray-300 mt-0.5">On-Time Performance</div>
           </div>
-          <div className="p-1 sm:p-0">
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-display">450+</div>
-            <div className="text-[11px] sm:text-xs text-gray-300 mt-0.5">Trade Lanes Active</div>
+          <div className="p-0.5 sm:p-0">
+            <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white font-display">450+</div>
+            <div className="text-[10px] sm:text-xs text-gray-300 mt-0.5">Trade Lanes Active</div>
           </div>
-          <div className="p-1 sm:p-0">
-            <div className="text-2xl sm:text-3xl font-extrabold text-white font-display">24/7</div>
-            <div className="text-[11px] sm:text-xs text-gray-300 mt-0.5">Dedicated Support</div>
+          <div className="p-0.5 sm:p-0">
+            <div className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white font-display">24/7</div>
+            <div className="text-[10px] sm:text-xs text-gray-300 mt-0.5">Dedicated Support</div>
           </div>
         </div>
       </div>

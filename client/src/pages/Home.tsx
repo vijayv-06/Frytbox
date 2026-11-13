@@ -34,33 +34,33 @@ export const Home: React.FC = () => {
       <IndustriesSection compact={true} />
 
       {/* 4. Why FRYTBOX (Streamlined Low Content) */}
-      <section className="py-20 bg-white border-t border-gray-100">
+      <section className="py-12 sm:py-20 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] bg-blue-50 px-3 py-1 rounded-full">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#2563EB] bg-blue-50 px-2.5 sm:px-3 py-1 rounded-full">
               The FRYTBOX Advantage
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#081426] tracking-tight mt-2 font-display">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-[#081426] tracking-tight mt-1.5 sm:mt-2 font-display">
               Why Global Shippers Partner With Us
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-gray-600">
+            <p className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-600">
               Unwavering commitment to operational excellence, transparent pricing, and dependable delivery.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {COMPANY_PROFILE.coreValues.map((val, idx) => (
               <div
                 key={idx}
-                className="bg-[#F8FAFC] p-6 rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-white hover:shadow-lg transition-all"
+                className="bg-[#F8FAFC] p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-100 hover:border-blue-200 hover:bg-white hover:shadow-lg transition-all"
               >
-                <div className="h-12 w-12 rounded-xl bg-white text-[#2563EB] flex items-center justify-center mb-5 shadow-sm border border-gray-100">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-white text-[#2563EB] flex items-center justify-center mb-3 sm:mb-5 shadow-sm border border-gray-100">
                   {getCoreValueIcon(val.icon)}
                 </div>
-                <h3 className="text-base font-bold text-[#081426] mb-2 font-display">
+                <h3 className="text-sm sm:text-base font-bold text-[#081426] mb-1 sm:mb-2 font-display">
                   {val.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                <p className="text-[11px] sm:text-xs md:text-sm text-gray-600 leading-relaxed">
                   {val.description}
                 </p>
               </div>
@@ -70,28 +70,28 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 5. Minimal Elegant Corporate Blue CTA */}
-      <section className="py-16 bg-[#0B192C] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <section className="py-10 sm:py-16 bg-[#0B192C] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-extrabold font-display text-white">
               Ready to Move Your <span className="text-[#38BDF8]">Business Forward?</span>
             </h2>
-            <p className="mt-1.5 text-sm text-gray-300 max-w-lg">
+            <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-gray-300 max-w-lg">
               Get in touch with our commercial operations team for tailored freight rates and logistics advisory.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3 shrink-0">
+          <div className="flex flex-wrap gap-2.5 sm:gap-3 shrink-0">
             <Link
               to="/quote"
-              className="px-7 py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm rounded-xl transition-all shadow-md flex items-center space-x-2"
+              className="px-5 sm:px-7 py-2.5 sm:py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-xs sm:text-sm rounded-xl transition-all shadow-md flex items-center space-x-2"
             >
               <span>Request a Quote</span>
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             </Link>
             <Link
               to="/contact"
-              className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm rounded-xl border border-white/20 transition-all"
+              className="px-4.5 sm:px-6 py-2.5 sm:py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm rounded-xl border border-white/20 transition-all"
             >
               <span>Contact Bengaluru HQ</span>
             </Link>

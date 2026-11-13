@@ -56,25 +56,3 @@ export interface ContactFormData {
   inquiryType: 'general' | 'sales' | 'support' | 'partnership' | 'careers';
   message: string;
 }
-
-export interface TrackingMilestone {
-  stage: string;
-  location: string;
-  date: string;
-  time: string;
-  completed: boolean;
-  current: boolean;
-  description: string;
-}
-
-export interface TrackingResult {
-  trackingNumber: string;
-  status: 'In Transit' | 'Delivered' | 'Customs Clearance' | 'Departed Origin' | 'Pending';
-  origin: string;
-  destination: string;
-  carrier: string;
-  estimatedDelivery: string;
-  serviceType: string;
-  currentLocation: string;
-  milestones: TrackingMilestone[];
-}

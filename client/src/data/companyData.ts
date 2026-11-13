@@ -90,8 +90,8 @@ export const SERVICES_DATA: ServiceItem[] = [
         description: 'Custom aircraft charter solutions for heavy machinery, emergency humanitarian relief, or high-volume freight.',
       },
       {
-        title: 'End-to-End Tracking',
-        description: 'Live flight tracking, milestone updates, and proactive exception management around the clock.',
+        title: 'End-to-End Cargo Visibility',
+        description: 'Live flight telemetry, milestone updates, and proactive exception management around the clock.',
       },
     ],
     specifications: [
@@ -146,7 +146,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     title: 'Road Logistics & Inland Freight',
     shortDesc: 'Time-definite domestic FTL & LTL trucking, cross-border transport, and heavy haulage solutions across India and beyond.',
     fullDesc:
-      'FRYTBOX Inland Network Services is an integrated, time-definite platform supporting cargo movement across domestic and cross-border corridors. With cost optimization, scalable capacity, and real-time GPS tracking, we guarantee safe, on-time road transportation.',
+      'FRYTBOX Inland Network Services is an integrated, time-definite platform supporting cargo movement across domestic and cross-border corridors. With cost optimization, scalable capacity, and real-time GPS telemetry, we guarantee safe, on-time road transportation.',
     iconName: 'Truck',
     image: `${base}images/services/frytbox-road-trucking.jpg`,
     category: 'core',
@@ -173,7 +173,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       },
     ],
     specifications: [
-      'GPS real-time tracking on all vehicles',
+      'GPS real-time telemetry on all vehicles',
       'Air-suspension trailers for sensitive equipment',
       'Hydraulic multi-axle modular trailers',
       'Strict transit safety compliance',
@@ -230,7 +230,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     category: 'specialized',
     features: [
       'Import and Export clearance across major air cargo complexes and sea ports',
-      'Direct ICEGATE electronic filing and automated EDI status tracking',
+      'Direct ICEGATE electronic filing and automated EDI status updates',
       'Duty Drawback, EPCG schemes, Advance Authorisation, and SEZ applications',
       'SVB (Special Valuation Branch) clearance, Bonding and De-Bonding warehousing',
       'Advisory on Foreign Trade Policy (FTP), customs tariff classifications, and DGFT formalities',
@@ -305,7 +305,7 @@ export const INDUSTRIES_DATA: IndustryItem[] = [
     title: 'Technology & Retail',
     subtitle: 'High-velocity supply chains for consumer electronics, fast fashion, and omnichannel retail.',
     description:
-      'We connect your factory floor to warehouse, distribution centers, and direct-to-store channels so goods reach shelves and consumer doorsteps faster. With serialized tracking and high-security handling, we protect high-value electronic components.',
+      'We connect your factory floor to warehouse, distribution centers, and direct-to-store channels so goods reach shelves and consumer doorsteps faster. With serialized monitoring and high-security handling, we protect high-value electronic components.',
     highlights: [
       'High-security logistics with anti-theft protocols and GPS geofencing',
       'Omnichannel fulfillment and reverse logistics management',

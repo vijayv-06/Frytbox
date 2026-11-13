@@ -9,18 +9,18 @@ export const QuotePage: React.FC = () => {
   const serviceParam = searchParams.get('service') || 'ocean-freight';
 
   return (
-    <div className="bg-gray-50 pt-24 min-h-screen">
+    <div className="bg-gray-50 pt-16 sm:pt-24 min-h-screen">
       {/* Header */}
-      <section className="bg-[#0B192C] text-white py-16">
+      <section className="bg-[#0B192C] text-white py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3.5 py-1.5 rounded-full border border-blue-700/30">
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-blue-700/30">
               Commercial Rate Desk
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mt-3 font-display text-white">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mt-2 sm:mt-3 font-display text-white">
               Request a Logistics Quotation
             </h1>
-            <p className="mt-4 text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
+            <p className="mt-2.5 sm:mt-4 text-xs sm:text-base text-gray-300 leading-relaxed font-normal">
               Get transparent spot or contract pricing for air, ocean, road, project cargo, and customs clearance. Quotes are reviewed by specialists at our Bengaluru headquarters.
             </p>
           </div>
@@ -28,7 +28,7 @@ export const QuotePage: React.FC = () => {
       </section>
 
       {/* Main Quote Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Quote Form Container */}
           <div className="lg:col-span-8">

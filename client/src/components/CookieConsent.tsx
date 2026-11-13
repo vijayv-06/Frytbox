@@ -77,7 +77,7 @@ export const CookieConsent: React.FC = () => {
         </div>
 
         <p className="mt-3 text-xs text-gray-300 leading-relaxed">
-          We use cookies and similar technologies to ensure seamless freight tracking, rate calculations, and secure corporate portal functionality. Optional analytics help us enhance global trade lane operations.
+          We use cookies and similar technologies to ensure seamless freight rate calculations, quotation workflows, and secure corporate portal functionality. Optional analytics help us enhance global trade lane operations.
         </p>
 
         {showPreferences && (
@@ -85,7 +85,7 @@ export const CookieConsent: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <span className="font-semibold text-white block">Strictly Necessary Cookies</span>
-                <span className="text-gray-400 text-[11px]">Essential for quoting, tracking, and account security.</span>
+                <span className="text-gray-400 text-[11px]">Essential for quoting, rate calculations, and account security.</span>
               </div>
               <span className="px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 text-[10px] font-bold uppercase">Required</span>
             </div>

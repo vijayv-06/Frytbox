@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Plane,
   Ship,
@@ -25,11 +25,9 @@ interface QuoteFormProps {
 
 export const QuoteForm: React.FC<QuoteFormProps> = ({ initialService = 'ocean-freight' }) => {
   const [step, setStep] = useState(1);
-  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [quoteReference, setQuoteReference] = useState('');
-  const [redirectCountdown, setRedirectCountdown] = useState(4);
   const [copied, setCopied] = useState(false);
 
   const [formData, setFormData] = useState<QuoteFormData>({
@@ -124,56 +122,25 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
     return { targetEmail, subject, body, mailtoUrl, gmailUrl };
   };
 
-  useEffect(() => {
-    let timer: ReturnType<typeof setInterval>;
-    if (submitted && quoteReference) {
-      setRedirectCountdown(4);
-      timer = setInterval(() => {
-        setRedirectCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            const { mailtoUrl } = getEmailDetails(quoteReference);
-            // Redirect to mail
-            window.location.href = mailtoUrl;
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => {
-      if (timer) clearInterval(timer);
-    };
-  }, [submitted, quoteReference]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
 
     if (!formData.fullName || !formData.email || !formData.phone) {
-      setErrorMsg('Please enter your full contact details.');
+      setErrorMsg('Please enter your full contact details (Name, Corporate Email, and Phone).');
       return;
     }
 
-    setLoading(true);
+    const generatedRef = `FBX-QT-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
+    setQuoteReference(generatedRef);
+    setSubmitted(true);
 
+    // Immediately trigger user's mail application with all pre-filled quotation details
+    const { mailtoUrl } = getEmailDetails(generatedRef);
     try {
-      const response = await fetch('/api/quotes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      const generatedRef = data.referenceId || `FBX-QT-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-      setQuoteReference(generatedRef);
-      setSubmitted(true);
+      window.location.href = mailtoUrl;
     } catch (err) {
-      const generatedRef = `FBX-QT-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-      setQuoteReference(generatedRef);
-      setSubmitted(true);
-    } finally {
-      setLoading(false);
+      console.error('Mail dispatch error:', err);
     }
   };
 
@@ -188,47 +155,47 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
     const emailInfo = getEmailDetails(quoteReference);
 
     return (
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 sm:p-12 text-center max-w-2xl mx-auto animate-fadeIn">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-12 text-center max-w-2xl mx-auto animate-fadeIn">
         <div className="h-16 w-16 bg-blue-50 text-[#2563EB] rounded-full flex items-center justify-center mx-auto mb-5 shadow-sm">
           <CheckCircle2 className="h-9 w-9" />
         </div>
 
         <div className="inline-block bg-blue-50 text-[#2563EB] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
-          Quotation Request Dispatched
+          Quotation Prepared for Mailing
         </div>
 
         <h3 className="text-2xl sm:text-3xl font-extrabold text-[#081426] font-display">
           Thank You, {formData.fullName}!
         </h3>
 
-        <p className="mt-2 text-gray-600 text-sm leading-relaxed">
-          Your quote inquiry has been registered in our system under reference <span className="font-mono font-bold text-gray-900">{quoteReference}</span>.
+        <p className="mt-2 text-gray-600 text-xs sm:text-sm leading-relaxed">
+          Your quote details have been compiled under Reference <span className="font-mono font-bold text-gray-900">{quoteReference}</span>.
         </p>
 
-        {/* Priority Message required by user */}
-        <div className="my-6 p-4 rounded-xl bg-amber-500/10 border-2 border-amber-500/50 text-left">
+        {/* Priority Mailing Notice */}
+        <div className="my-6 p-4 rounded-xl bg-blue-50/80 border border-blue-200 text-left">
           <div className="flex items-start space-x-3">
-            <div className="h-10 w-10 rounded-lg bg-amber-500 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+            <div className="h-10 w-10 rounded-lg bg-[#2563EB] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
               <Mail className="h-5 w-5" />
             </div>
             <div className="flex-1">
-              <h4 className="text-sm font-bold text-amber-900 leading-snug">
-                Send quotation via mail to get the quick response from our team
+              <h4 className="text-sm font-bold text-blue-950 leading-snug">
+                Send Quotation via Email to Our Commercial Desk
               </h4>
-              <p className="text-xs text-amber-800 mt-1">
-                Redirecting to your mail client with pre-composed quotation details addressed to <span className="font-mono font-bold text-gray-900">vijayvenkatesh841@gmail.com</span> in <span className="font-bold text-[#2563EB]">{redirectCountdown}s</span>...
+              <p className="text-xs text-blue-900/80 mt-1">
+                Your email client was opened with the pre-composed quotation addressed to <span className="font-mono font-bold text-gray-900">vijayvenkatesh841@gmail.com</span>. If your mail app did not open automatically, click one of the options below to send:
               </p>
             </div>
           </div>
 
           {/* Action buttons */}
-          <div className="mt-4 pt-3 border-t border-amber-500/20 flex flex-wrap gap-2.5">
+          <div className="mt-4 pt-3 border-t border-blue-200/60 flex flex-wrap gap-2.5">
             <a
               href={emailInfo.mailtoUrl}
-              className="px-4 py-2.5 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow flex items-center space-x-2"
+              className="px-4 py-2.5 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow-sm flex items-center space-x-2"
             >
               <Mail className="h-3.5 w-3.5" />
-              <span>Send Quotation via Mail Now</span>
+              <span>Send via Email Client</span>
             </a>
 
             <a
@@ -244,7 +211,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
             <button
               type="button"
               onClick={copyDetailsToClipboard}
-              className="px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-xs font-medium transition-all flex items-center space-x-1.5"
+              className="px-3.5 py-2.5 rounded-lg bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-xs font-medium transition-all flex items-center space-x-1.5 cursor-pointer"
             >
               {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5 text-gray-500" />}
               <span>{copied ? 'Copied Details' : 'Copy Text'}</span>
@@ -255,7 +222,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
         {/* Breakdown summary */}
         <div className="my-5 p-4 bg-gray-50 rounded-xl border border-gray-200 text-left space-y-2 text-xs">
           <div className="flex justify-between">
-            <span className="text-gray-500">Destination Mail:</span>
+            <span className="text-gray-500">Destination Email:</span>
             <span className="font-mono font-semibold text-gray-900">vijayvenkatesh841@gmail.com</span>
           </div>
           <div className="flex justify-between">
@@ -277,9 +244,9 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
             setSubmitted(false);
             setStep(1);
           }}
-          className="mt-3 px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors"
+          className="mt-3 px-6 py-2.5 rounded-lg border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors cursor-pointer"
         >
-          Submit Another Request
+          Create Another Quote Request
         </button>
       </div>
     );
@@ -287,7 +254,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-      {/* Step Progress Tracker */}
+      {/* Step Progress Indicator */}
       <div className="bg-[#0B192C] px-6 py-5 border-b border-slate-800 text-white">
         <div className="flex items-center justify-between max-w-lg mx-auto">
           {[
@@ -349,14 +316,14 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
                       type="button"
                       key={item.id}
                       onClick={() => setFormData({ ...formData, serviceType: item.id })}
-                      className={`p-3.5 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                      className={`p-3.5 rounded-xl border text-left transition-all flex flex-col justify-between cursor-pointer ${
                         isSelected
-                          ? 'border-[#2563EB] bg-blue-50/50 text-[#081426] shadow-sm ring-1 ring-[#2563EB]'
-                          : 'border-gray-200 hover:border-gray-300 text-gray-600 bg-gray-50/50'
+                          ? 'border-[#2563EB] bg-blue-50/70 text-[#2563EB] ring-2 ring-blue-500/20'
+                          : 'border-gray-200 hover:border-blue-200 hover:bg-gray-50 text-gray-700'
                       }`}
                     >
-                      <Icon className={`h-5 w-5 mb-2 ${isSelected ? 'text-[#2563EB]' : 'text-gray-400'}`} />
-                      <span className="text-xs font-semibold">{item.label}</span>
+                      <Icon className={`h-5 w-5 mb-2 ${isSelected ? 'text-[#2563EB]' : 'text-gray-500'}`} />
+                      <span className="text-xs font-bold leading-tight">{item.label}</span>
                     </button>
                   );
                 })}
@@ -364,55 +331,63 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
             </div>
 
             {/* Origin & Destination */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+              {/* Origin */}
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
                 <div className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center space-x-1.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                  <span>Origin (Pick-Up / Port of Loading)</span>
+                  <span>Origin Location</span>
                 </div>
+
                 <div>
                   <CountryAutocomplete
-                    label="Origin Country"
+                    label="Country"
                     value={formData.originCountry}
-                    onChange={(country) => setFormData((prev) => ({ ...prev, originCountry: country }))}
-                    placeholder="Type origin country..."
-                    required
+                    onChange={(val) => setFormData({ ...formData, originCountry: val })}
+                    placeholder="Search origin country..."
                   />
                 </div>
+
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">City / Gateway Port</label>
+                  <label className="block text-[11px] text-gray-500 mb-1">City or Airport / Sea Port Code</label>
                   <input
                     type="text"
+                    required
                     name="originCity"
                     value={formData.originCity}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs text-gray-900 focus:ring-1 focus:ring-[#2563EB]"
+                    placeholder="e.g. Bengaluru / Kempegowda (BLR)"
+                    className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl border border-gray-200 bg-gray-50/50 space-y-3">
+              {/* Destination */}
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
                 <div className="text-xs font-bold uppercase tracking-wider text-gray-700 flex items-center space-x-1.5">
                   <span className="h-2 w-2 rounded-full bg-[#2563EB]" />
-                  <span>Destination (Port of Discharge / Consignee)</span>
+                  <span>Destination Location</span>
                 </div>
+
                 <div>
                   <CountryAutocomplete
-                    label="Destination Country"
+                    label="Country"
                     value={formData.destinationCountry}
-                    onChange={(country) => setFormData((prev) => ({ ...prev, destinationCountry: country }))}
-                    placeholder="Type destination country..."
-                    required
+                    onChange={(val) => setFormData({ ...formData, destinationCountry: val })}
+                    placeholder="Search destination country..."
                   />
                 </div>
+
                 <div>
-                  <label className="block text-xs text-gray-500 mb-1">City / Gateway Port</label>
+                  <label className="block text-[11px] text-gray-500 mb-1">City or Airport / Sea Port Code</label>
                   <input
                     type="text"
+                    required
                     name="destinationCity"
                     value={formData.destinationCity}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs text-gray-900 focus:ring-1 focus:ring-[#2563EB]"
+                    placeholder="e.g. Los Angeles / Port of LA (USLAX)"
+                    className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
               </div>
@@ -422,57 +397,79 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
               <button
                 type="button"
                 onClick={nextStep}
-                className="px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow flex items-center space-x-2"
+                className="px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow flex items-center space-x-1.5 cursor-pointer"
               >
-                <span>Continue to Cargo Details</span>
+                <span>Next: Cargo Details</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 2: Cargo Specifications */}
+        {/* STEP 2: Cargo Parameters & Readiness */}
         {step === 2 && (
           <div className="space-y-5 animate-fadeIn">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">
-                Cargo Nature / Description
+                Cargo Description & Commodity Classification *
               </label>
               <textarea
-                name="cargoDescription"
+                required
                 rows={2}
+                name="cargoDescription"
                 value={formData.cargoDescription}
                 onChange={handleChange}
-                placeholder="E.g., 20 pallets of industrial spare parts, non-hazardous, packed in cartons"
-                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900 focus:ring-1 focus:ring-[#2563EB]"
+                placeholder="e.g. Automotive components, palletized consumer electronics, or temperature-sensitive pharmaceuticals"
+                className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Estimated Total Weight (KG)</label>
+                <label className="block text-xs text-gray-500 mb-1">Estimated Gross Weight (KG) *</label>
                 <input
                   type="number"
+                  min="1"
+                  required
                   name="estimatedWeightKg"
                   value={formData.estimatedWeightKg || ''}
                   onChange={handleChange}
+                  placeholder="e.g. 1500"
                   className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
                 />
               </div>
 
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Estimated Volume (CBM)</label>
+                <label className="block text-xs text-gray-500 mb-1">Estimated Volume (CBM) *</label>
                 <input
                   type="number"
+                  step="0.1"
+                  min="0.1"
+                  required
                   name="estimatedVolumeCbm"
                   value={formData.estimatedVolumeCbm || ''}
+                  onChange={handleChange}
+                  placeholder="e.g. 8.5"
+                  className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs text-gray-500 mb-1">Cargo Ready Date *</label>
+                <input
+                  type="date"
+                  required
+                  name="cargoReadyDate"
+                  value={formData.cargoReadyDate}
                   onChange={handleChange}
                   className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
                 />
               </div>
+            </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Incoterms</label>
+                <label className="block text-xs text-gray-500 mb-1">Preferred Incoterm</label>
                 <select
                   name="incoterm"
                   value={formData.incoterm}
@@ -482,33 +479,21 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
                   <option value="FOB">FOB - Free on Board</option>
                   <option value="CIF">CIF - Cost, Insurance & Freight</option>
                   <option value="EXW">EXW - Ex Works</option>
-                  <option value="DDP">DDP - Delivered Duty Paid</option>
                   <option value="DAP">DAP - Delivered at Place</option>
+                  <option value="DDP">DDP - Delivered Duty Paid</option>
+                  <option value="CFR">CFR - Cost & Freight</option>
                   <option value="FCA">FCA - Free Carrier</option>
                 </select>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs text-gray-500 mb-1">Cargo Ready Date</label>
-                <input
-                  type="date"
-                  name="cargoReadyDate"
-                  value={formData.cargoReadyDate}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
-                />
-              </div>
 
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Special Handling / Temperature</label>
+                <label className="block text-xs text-gray-500 mb-1">Special Handling / Requirements</label>
                 <input
                   type="text"
                   name="specialRequirements"
                   value={formData.specialRequirements}
                   onChange={handleChange}
-                  placeholder="E.g., Reefer +2°C to +8°C, Over-dimensional, DG"
+                  placeholder="e.g. Cold-chain +2 to +8°C, Dangerous goods (DG), Tailgate required"
                   className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
                 />
               </div>
@@ -518,7 +503,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
               <button
                 type="button"
                 onClick={prevStep}
-                className="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors flex items-center space-x-1.5"
+                className="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors flex items-center space-x-1.5 cursor-pointer"
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span>Back</span>
@@ -526,21 +511,28 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
               <button
                 type="button"
                 onClick={nextStep}
-                className="px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow flex items-center space-x-2"
+                className="px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow flex items-center space-x-1.5 cursor-pointer"
               >
-                <span>Continue to Contact</span>
+                <span>Next: Contact Details</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 3: Contact & Submission */}
+        {/* STEP 3: Shipper Contact Information & Email Dispatch */}
         {step === 3 && (
-          <div className="space-y-4 animate-fadeIn">
+          <div className="space-y-5 animate-fadeIn">
+            <div className="p-3.5 bg-blue-50/80 rounded-xl border border-blue-200 text-xs text-blue-900 flex items-center space-x-2.5">
+              <Mail className="h-4 w-4 text-[#2563EB] shrink-0" />
+              <span>
+                Entering your details will prepare and dispatch your official quotation request directly to our commercial desk at <strong className="font-semibold text-blue-950">vijayvenkatesh841@gmail.com</strong>.
+              </span>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs text-gray-500 mb-1">Full Contact Name *</label>
+                <label className="block text-xs text-gray-500 mb-1">Contact Person Full Name *</label>
                 <input
                   type="text"
                   required
@@ -548,7 +540,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="e.g. Vikram Sundaram"
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                 />
               </div>
 
@@ -561,7 +553,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
                   value={formData.companyName}
                   onChange={handleChange}
                   placeholder="e.g. Acme Global Logistics Ltd"
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                 />
               </div>
             </div>
@@ -576,7 +568,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="v.sundaram@acme.com"
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                 />
               </div>
 
@@ -589,7 +581,7 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+91 98765 43210"
-                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900"
+                  className="w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                 />
               </div>
             </div>
@@ -605,24 +597,18 @@ FRYTBOX Worldwide Logistics (www.frytbox.com)`;
               <button
                 type="button"
                 onClick={prevStep}
-                className="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors flex items-center space-x-1.5"
+                className="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50 transition-colors flex items-center space-x-1.5 cursor-pointer"
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span>Back</span>
               </button>
               <button
                 type="submit"
-                disabled={loading}
-                className="px-8 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow-md flex items-center space-x-2 disabled:opacity-50"
+                className="px-7 sm:px-8 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold transition-all shadow-md hover:shadow-blue-600/30 flex items-center space-x-2 active:scale-95 cursor-pointer"
               >
-                {loading ? (
-                  <span className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent" />
-                ) : (
-                  <>
-                    <span>Submit Quotation Request</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </>
-                )}
+                <Mail className="h-4 w-4" />
+                <span>Send Quotation via Email</span>
+                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>

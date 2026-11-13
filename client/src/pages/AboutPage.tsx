@@ -175,7 +175,7 @@ export const AboutPage: React.FC = () => {
                 <div className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-[#2563EB] shrink-0 mt-0.5" />
                   <span className="text-sm text-gray-700">
-                    <strong>Warehouse Management Systems (WMS):</strong> Real-time SKU tracking, FTWZ integration, and barcoded order fulfillment.
+                    <strong>Warehouse Management Systems (WMS):</strong> Real-time SKU inventory visibility, FTWZ integration, and barcoded order fulfillment.
                   </span>
                 </div>
                 <div className="flex items-start space-x-3">
