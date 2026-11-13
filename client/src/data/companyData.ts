@@ -55,6 +55,7 @@ export const COMPANY_PROFILE = {
   videoAssets: {
     brandFilm: `${base}videos/Frytbox11.mp4`,
     heroReel: `${base}videos/Frytbox11.mp4`,
+    heroReelMobile: `${base}videos/Frytbox22.mp4`,
     networkGlobe: `${base}videos/network-globe.mp4`,
     heroLogistics: `${base}videos/hero-logistics.mp4`,
   },

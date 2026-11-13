@@ -49,7 +49,7 @@ export const IndustriesPage: React.FC = () => {
             <span className="text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3.5 py-1.5 rounded-full border border-blue-700/30">
               Sector Specializations
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 font-display">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 font-display text-white">
               Industries We Power
             </h1>
             <p className="mt-5 text-base sm:text-lg text-gray-200 leading-relaxed font-normal">

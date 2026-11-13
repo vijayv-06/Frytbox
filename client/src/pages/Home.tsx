@@ -73,8 +73,8 @@ export const Home: React.FC = () => {
       <section className="py-16 bg-[#0B192C] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-display">
-              Ready to Move Your Business Forward?
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
+              Ready to Move Your <span className="text-[#38BDF8]">Business Forward?</span>
             </h2>
             <p className="mt-1.5 text-sm text-gray-300 max-w-lg">
               Get in touch with our commercial operations team for tailored freight rates and logistics advisory.

@@ -13,7 +13,7 @@ export const ContactPage: React.FC = () => {
             <span className="text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3.5 py-1.5 rounded-full border border-blue-700/30">
               Global Support & Inquiries
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mt-3 font-display">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mt-3 font-display text-white">
               Contact FRYTBOX Worldwide
             </h1>
             <p className="mt-4 text-sm sm:text-base text-gray-300 leading-relaxed font-normal">

@@ -51,7 +51,7 @@ export const AboutPage: React.FC = () => {
             <span className="text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3.5 py-1.5 rounded-full border border-blue-700/30">
               Corporate Overview & Profile
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 font-display">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 font-display text-white">
               About FRYTBOX Worldwide
             </h1>
             <p className="mt-5 text-base sm:text-lg text-gray-200 leading-relaxed font-normal">
@@ -188,7 +188,7 @@ export const AboutPage: React.FC = () => {
             </div>
 
             <div className="bg-[#0B192C] p-8 rounded-2xl text-white shadow-xl">
-              <h3 className="text-xl font-bold font-display mb-4">
+              <h3 className="text-xl font-bold font-display mb-4 text-white">
                 Corporate Headquarters & Regulatory Standing
               </h3>
               <div className="space-y-3 text-xs text-gray-300">

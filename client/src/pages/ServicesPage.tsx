@@ -50,16 +50,18 @@ export const ServicesPage: React.FC = () => {
   return (
     <div className="bg-white pt-24">
       {/* Services Header */}
-      <section className="bg-[#0B192C] text-white py-20 relative overflow-hidden">
+      <section className="bg-[#0B192C] text-white py-20 sm:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/15 via-transparent to-sky-500/10 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3.5 py-1.5 rounded-full border border-blue-700/30">
-              Integrated Freight Forwarding
+            <span className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-900/40 px-3.5 py-1.5 rounded-full border border-blue-700/30">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+              <span>Integrated Freight Forwarding</span>
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 font-display">
-              Logistics Services
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4 font-display text-white">
+              Logistics <span className="text-[#38BDF8]">Services</span>
             </h1>
-            <p className="mt-5 text-base sm:text-lg text-gray-200 leading-relaxed font-normal">
+            <p className="mt-5 text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
               Tailored shipping services to meet your business needs by providing the right combination of freight, logistics expertise, and technology.
             </p>
           </div>
@@ -176,21 +178,26 @@ export const ServicesPage: React.FC = () => {
       </section>
 
       {/* Quote Banner */}
-      <section className="py-16 bg-[#0B192C] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold font-display">
-              Ready to Optimize Your Freight Logistics?
+      <section className="py-16 sm:py-20 bg-[#0B192C] text-white relative overflow-hidden border-t border-slate-800">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-transparent to-blue-900/30 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#38BDF8] bg-blue-950/60 px-3 py-1 rounded-full border border-blue-800/40 inline-block mb-3">
+              Direct Commercial Rate Desk
+            </span>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-display text-white">
+              Ready to Optimize Your <span className="text-[#38BDF8]">Freight Logistics?</span>
             </h3>
-            <p className="mt-1 text-sm text-gray-300">
+            <p className="mt-2 text-sm sm:text-base text-slate-300">
               Submit your cargo specifications for transparent, competitive rates across all modes.
             </p>
           </div>
           <Link
             to="/quote"
-            className="px-8 py-3.5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm rounded-xl transition-all shadow-xl"
+            className="px-8 py-4 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm rounded-xl transition-all shadow-xl hover:shadow-blue-500/25 flex items-center space-x-2 shrink-0"
           >
-            Request Instant Quote
+            <span>Request Instant Quote</span>
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>
